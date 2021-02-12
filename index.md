@@ -55,4 +55,4 @@ const char* channelApiKey = "ABCDEFGHIJKLMNOPQ";
 ```
 
 ## Contact
-If you have any question regarding how something works, how to upload the code to the ESP32, have any suggestions for improvement or spotted a bug don't hesitate to contact me through my email _lautisilbergleit@gmail.com_
+If you have any questions regarding how something works, how to upload the code to the ESP32, have any suggestions for improvement or spotted a bug don't hesitate to contact me through my email _lautisilbergleit@gmail.com_
