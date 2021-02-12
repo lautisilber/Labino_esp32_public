@@ -1,1 +1,11 @@
+# general data
+title: lautisilber
+email: lautisilbergleit@gmail.com
+description: lautisilber's landing page
+github_username: lautisilber
+
+# build settings
+exclude: ['README.md']
+markdown: kramdown
 theme: jekyll-theme-cayman
+show_downloads: true

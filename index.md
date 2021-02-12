@@ -1,37 +1,53 @@
-## Welcome to GitHub Pages
+## Introduction
+Labino ESP32 helps you control your plants in the lab. With an ESP32 you can now meassure and log soil moisture levels, air humidity and temperature and control watering cycles and all this data is accessible htanks to the integration with [ThingSpeak](https://thingspeak.com/)! Labino ESP32 also offers a convenient web interface to tweak parameters and watch a live feed of your meassurements.
 
-You can use the [editor on GitHub](https://github.com/lautisilber/Labino_esp32_public/edit/gh-pages/index.md) to maintain and preview the content for your website in Markdown files.
+### Requirements
+- An ESP32 microcontroller
+- A PC to program it (Only Arduino IDE officially supported so far)
+- Soil Moisture Sensors and a DHT22 (DHT11 is supported but code needs to be changed appropriately)
+- SD card module with an sd card
+- Combination of pumps and valves to control water flow
+- Internet connection is highly recommended
 
-Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
+## Installation
+In order to use this project with the Arduino IDE first you have to install:
+1. The ESP32 compiler
+    - follow this tutorial https://www.youtube.com/watch?v=mBaS3YnqDaU (url -> https://dl.espressif.com/dl/package_esp32_index.json)
+2. The SPIFFS file system tools
+    - in the Arduino projects directory (where the 'libraries' folder should exists) create a folder named 'tools'
+    - in the new folder uncompress the .zip file named 'ESP32FS-1.0.zip' (thet contains the 'ESP32FS' folder)
+    - In order to check that everything was correctly set up, reopen the IDE and click 'Tools' on the top menu and if there is an option named 'ESP32 Sketch Data Upload' exists it means everything is ok
+3. The necessary dependencies
+    - on the top menu go to 'Sketch' > 'Include Library' > 'Add .ZIP Library' and add the 'AsyncTCP', 'ESPAsyncWebServer', 'NTPClient' and 'thingspeak-arduino' libraries
+    - add 'DHT sensor library' by Adafruit and 'ArduinoJson' by Benoit Blanchon through Library Manager ('Sketch' > 'Include Library' > 'Library Manager')
 
-### Markdown
+Now you can open 'main' in the Arduino IDE. Before you do anything be sure that the target board is an ESP32 and not an Arduino Uno (if you don't know exactly which ESP32 board you have, 'ESP32 Dev Module' should work just fine). Next, you'll want to load the web files to the ESP32. To do so go to 'Tools' > 'ESP32 Sketch Data Upload' and the files will start copying to the board. Now you can finally upload the program to the ESP32
 
-Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
+***Observations***:
+It's recommended that the Arduino IDE's serial monitor is closed during any upload to the ESP32. Moreover it's possible that in order to load files to the board you need to press the 'boot' button in your ESP32 dev board
 
+## Configuration
+To configure wifi credentials you can either write a file to the sd card named 'config.txt' with the `{"ssid": "YOUR_SSID", "password": "YOUR_PASSWORD"}` json string or type your ssid and password directly into the source code in lines 81 and 82
 ```markdown
-Syntax highlighted code block
-
-# Header 1
-## Header 2
-### Header 3
-
-- Bulleted
-- List
-
-1. Numbered
-2. List
-
-**Bold** and _Italic_ and `Code` text
-
-[Link](url) and ![Image](src)
+const char* ssid = "YOUR_SSID";
+const char* password = "YOUR_PASSWORD";
 ```
 
-For more details see [GitHub Flavored Markdown](https://guides.github.com/features/mastering-markdown/).
+## ThingSpeak
+The project currently supports 7 ThingSpeak fields:
+1. Soil Moisture Average
+2. Ambient Temperature
+3. Ambient Humidity
+4. Water Level
+5. Pump 1 State
+6. Pump 2 State
+7. Error Codes
 
-### Jekyll Themes
+In order to set up your own ThingSpeak channel you need to create a ThingSpeak account and then create a channel. Then, in channel settings enable fields 1 through 7. Finally copy your channel ID and Write API Key (under 'API Keys') and copy them to the projects in lines 90 and 91
+```markdown
+const uint16_t channelID = 1234567;
+const char* channelApiKey = "ABCDEFGHIJKLMNOPQ";
+```
 
-Your Pages site will use the layout and styles from the Jekyll theme you have selected in your [repository settings](https://github.com/lautisilber/Labino_esp32_public/settings). The name of this theme is saved in the Jekyll `_config.yml` configuration file.
-
-### Support or Contact
-
-Having trouble with Pages? Check out our [documentation](https://docs.github.com/categories/github-pages-basics/) or [contact support](https://support.github.com/contact) and we’ll help you sort it out.
+## Contact
+If you have any question in regards to how something works, hoy to upload the code to the ESP32 or if you have any suggestions for improvement or spotted a bug don't hesitate to contact me through my email _lautisilbergleit@gmail.com_
