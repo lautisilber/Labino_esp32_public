@@ -1,3 +1,8 @@
+---
+layout: default
+title: Labino ESP32
+---
+
 ## Introduction
 Labino ESP32 helps you control your plants in the lab. With an ESP32 you can now meassure and log soil moisture levels, air humidity and temperature and control watering cycles and all this data is accessible htanks to the integration with [ThingSpeak](https://thingspeak.com/)! Labino ESP32 also offers a convenient web interface to tweak parameters and watch a live feed of your meassurements.
 
