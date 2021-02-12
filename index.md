@@ -34,8 +34,8 @@ It's recommended that the Arduino IDE's serial monitor is closed during any uplo
 ## Configuration
 To configure wifi credentials you can either write a file to the sd card named 'config.txt' with the `{"ssid": "YOUR_SSID", "password": "YOUR_PASSWORD"}` json string or type your ssid and password directly into the source code in lines 81 and 82:
 ```markdown
-const char\* ssid = "YOUR_SSID";
-const char\* password = "YOUR_PASSWORD";
+const char* ssid = "YOUR_SSID";
+const char* password = "YOUR_PASSWORD";
 ```
 
 ## ThingSpeak
@@ -51,7 +51,7 @@ The project currently supports 7 ThingSpeak fields:
 In order to set up your own ThingSpeak channel you need to create a ThingSpeak account and then create a channel. Then, in channel settings enable fields 1 through 7. Finally copy your channel ID and Write API Key (under 'API Keys') and copy them to the projects in lines 90 and 91:
 ```markdown
 const uint16_t channelID = 1234567;
-const char\* channelApiKey = "ABCDEFGHIJKLMNOPQ";
+const char* channelApiKey = "ABCDEFGHIJKLMNOPQ";
 ```
 
 ## Contact
